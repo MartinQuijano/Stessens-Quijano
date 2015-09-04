@@ -65,7 +65,7 @@ public class Ventana extends javax.swing.JFrame {
 				
 				 
 				getContentPane().add(bFrase);
-				bFrase.setText("Un dolar por la felicidad eterna!");
+				bFrase.setText("¡Un dólar por la felicidad eterna!");
 				bFrase.setBounds(104, 258, 297, 23);
 				bFrase.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
