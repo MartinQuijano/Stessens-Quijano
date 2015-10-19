@@ -5,11 +5,11 @@ import juego.Juego;
 public class ContadorTiempo extends Thread {
 
 	private Juego juego;
-	private GUI gui;
+	private GUI miGUI;
 
-	ContadorTiempo(Juego j, GUI gui) {
+	public ContadorTiempo(Juego j, GUI gui) {
 		this.juego = j;
-		this.gui = gui;
+		this.miGUI = gui;
 	}
 
 	public void run() {
@@ -20,9 +20,9 @@ public class ContadorTiempo extends Thread {
 				e.printStackTrace();
 			}
 			juego.mover();
-			if(gui.getLock()){
-				juego.mover(gui.getDirection());
-				gui.toggleLock();
+			if(miGUI.getLock()){
+				juego.mover(miGUI.getDirection());
+				miGUI.toggleLock();
 			}
 		}
 	}

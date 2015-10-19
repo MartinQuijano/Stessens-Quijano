@@ -1,32 +1,31 @@
 package entidades;
 
 /**
- * 
+ * Los altair son seres del inframundo. Pueden atravesar las paredes destruibles (pero no las indestructibles).
+ * Son tan veloces como los Rugulos e igual de inteligentes. En el nivel tiene que aparecer 2 de ellos.
  */
 public class Altair extends Enemigo {
 
 	/**
-     * @param int x 
-     * @param int y
+     * @param int x representa la posición x dentro del arreglo de celdas.
+     * @param int y representa la posición y dentro del arreglo de celdas.
      */
     public Altair(int x, int y) {
-    	super(x, y);
+    	super(x, y, 2);
     }
 
     /**
-     * @return
+     * @return puntaje otorgado al matarlo.
      */
     public int getPuntaje() {
-        // TODO implement here
-        return 0;
+        return 20;
     }
 
     /**
-     * @return
+     * @return true si puede atravesar paredes, false caso contrario.
      */
     public boolean atraviesaParedes() {
-        // TODO implement here
-        return false;
+        return true;
     }
 
 }

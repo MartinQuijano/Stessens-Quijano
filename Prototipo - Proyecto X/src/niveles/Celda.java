@@ -1,17 +1,10 @@
 package niveles;
 
-import java.awt.event.KeyEvent;
-
 import entidades.Bomberman;
 import entidades.Enemigo;
 
 public class Celda {
 
-	public static final int LEFT = KeyEvent.VK_LEFT;
-	public static final int RIGHT = KeyEvent.VK_RIGHT;
-	public static final int UP = KeyEvent.VK_UP;
-	public static final int DOWN = KeyEvent.VK_DOWN;
-	
 	protected int posX;
 	protected int posY;
 	protected Pared miPared;

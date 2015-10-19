@@ -13,9 +13,12 @@ public abstract class Entidad {
 	protected int posX;
 	protected int posY;
 	
-	protected Entidad(int x, int y){
+	protected int velocidad;
+	
+	protected Entidad(int x, int y, int vel){
 		posX = x;
 		posY = y;
+		velocidad = vel;
 		
 		grafico = null;
 	}
@@ -51,5 +54,9 @@ public abstract class Entidad {
 	
 	public JLabel getGrafico(){
 		return this.grafico.getGrafico();
+	}
+	
+	public int obtVelocidad(){
+		return velocidad;
 	}
 }

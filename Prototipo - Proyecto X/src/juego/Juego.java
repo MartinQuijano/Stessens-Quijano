@@ -1,6 +1,12 @@
 package juego;
 
+import java.util.LinkedList;
+
+import niveles.Nivel;
 import entidades.Bomba;
+import entidades.Bomberman;
+import entidades.Enemigo;
+import gui.GUI;
 
 
 /**
@@ -8,22 +14,41 @@ import entidades.Bomba;
  */
 public class Juego {
 
- 
+	protected GUI miGUI;
     protected int puntaje;
     protected int tiempo;
+    protected Nivel nivel;
 
+    protected LinkedList<Bomba> bombas;
+    protected LinkedList<Enemigo> enemigos;
+    protected Bomberman bomberman;
+    
     /**
      * 
      */
-    public void Juego() {
-        // TODO implement here
+    public Juego(GUI gui) {
+        miGUI = gui;
     }
 
     /**
      * 
      */
+    public void mover(){
+    	
+    }
+    
+    /**
+     * 
+     */
+    public void mover(int dir){
+    	
+    }
+    
+    /**
+     * 
+     */
     public void crearBomba() {
-        // TODO implement here
+    	bombas.add(bomberman.crearBomba());
     }
 
     /**
@@ -37,13 +62,6 @@ public class Juego {
      * @param b
      */
     private void calcularEfectoBomba(Bomba b) {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void generarNivel() {
         // TODO implement here
     }
 

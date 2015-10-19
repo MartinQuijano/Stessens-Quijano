@@ -15,7 +15,7 @@ public class GUI extends JFrame {
 
 	private JPanel contentPane;
 	
-	private Juego j;
+	private Juego miJuego;
 	private ContadorTiempo tiempo;
 	
 	private boolean lock = false;
@@ -56,8 +56,8 @@ public class GUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		j = new Juego(this);
-		tiempo = new ContadorTiempo(j, this);
+		miJuego = new Juego(this);
+		tiempo = new ContadorTiempo(miJuego, this);
 		tiempo.start();
 	}
 	

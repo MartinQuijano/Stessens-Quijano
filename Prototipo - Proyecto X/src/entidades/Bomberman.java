@@ -1,71 +1,74 @@
 package entidades;
 
 /**
- * 
+ * Es el personaje principal del juego, quien puede desplazarse por el nivel en forma vertical y 
+ * horizontal colocando bombas y destruyendo así paredes y enemigos. Bomberman tiene una sola vida
+ * y cuando muere se termina el juego.
  */
 public class Bomberman extends Entidad {
 
-
     protected boolean estaVivo;
-    protected int velocidad;
     protected int bombasHabiles;
     protected int alcanceBomba;
     protected int cantMaxBombas;
     protected boolean masacralityActivo;
 
     /**
-     * @param int x 
-     * @param int y
+     * @param int x representa la posición x dentro del arreglo de celdas.
+     * @param int y representa la posición y dentro del arreglo de celdas.
      */
     public Bomberman(int x, int y) {
-        super(x, y);
+        super(x, y, 5);
     }
 
     /**
-     * @return
+     * @return true si Bomberman sigue vivo, falso caso contrario.
      */
     public boolean sigueVivo() {
-        // TODO implement here
-        return false;
+        return estaVivo;
     }
 
     /**
-     * 
+     * Establece el valor del atributo estaVivo a true.
      */
     public void destruir() {
-        // TODO implement here
+        estaVivo = false;
+    }
+
+    
+	/**
+	 * @return una bomba en la posición que se encuentra y con el alcance que tengan
+	 *         las bombas actualmente.
+	 */
+    public Bomba crearBomba() {
+    	Bomba b = new Bomba(posX, posY, alcanceBomba);
+    	return b;
     }
 
     /**
-     * 
-     */
-    public void colocarBomba() {
-        // TODO implement here
-    }
-
-    /**
-     * 
+     * Incrementa la cantidad de bombas habiles para usar en 1.
      */
     public void reponerBomba() {
-        // TODO implement here
+        if(bombasHabiles < cantMaxBombas)
+        	bombasHabiles++;
     }
 
     /**
-     * 
+     * Duplica la velocidad de movimiento.
      */
     public void duplicarVelocidad() {
-        // TODO implement here
+        velocidad = velocidad*2;
     }
 
     /**
-     * 
+     * Incrementa el alcance de las bombas que crea.
      */
     public void setAlcanceBombas() {
-        // TODO implement here
+        alcanceBomba++;
     }
 
     /**
-     * @return
+     * @return 
      */
     public int obtAlcanceBombas() {
         // TODO implement here

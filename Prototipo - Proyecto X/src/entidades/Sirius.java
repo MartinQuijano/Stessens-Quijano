@@ -1,31 +1,32 @@
 package entidades;
 
 /**
- * 
+ * Sirius es un ex Bomberman que se paso al lado oscuro. No puede atravesar paredes pero es tres
+ * veces más rapido que los Rugulos o Altair. Solo hay un Sirius en el nivel y aparece en el
+ * rincón opuesto a donde aparece Bomberman. Sirius es muy inteligente y siempre quiere ir
+ * hacia donde esta Bomberman.
  */
 public class Sirius extends Enemigo {
 
     /**
-     * @param int x 
-     * @param int y
+     * @param int x representa la posición x dentro del arreglo de celdas.
+     * @param int y representa la posición y dentro del arreglo de celdas.
      */
     public  Sirius(int x, int y) {
-        super(x, y);
+        super(x, y, 6);
     }
 
     /**
-     * @return
+     * @return puntaje otorgado al matarlo.
      */
     public int getPuntaje() {
-        // TODO implement here
-        return 0;
+        return 50;
     }
 
     /**
-     * @return
+     * @return true si puede atravesar paredes, false caso contrario.
      */
     public boolean atraviesaParedes() {
-        // TODO implement here
         return false;
     }
 

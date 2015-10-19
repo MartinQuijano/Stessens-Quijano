@@ -2,12 +2,18 @@ package entidades;
 
 public abstract class Enemigo extends Entidad{
 
-	protected Enemigo(int x, int y){
-		super(x,y);
+	protected Enemigo(int x, int y, int vel){
+		super(x,y, vel);
 	}
 	
+	/**
+    * @return puntaje otorgado al matarlo.
+    */
 	public abstract int getPuntaje();
 	
+	/**
+     * @return true si puede atravesar paredes, false caso contrario.
+     */
 	public abstract boolean atraviesaParedes();
 	
 }
