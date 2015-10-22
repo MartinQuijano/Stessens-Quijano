@@ -14,15 +14,14 @@ public class GUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
-	
 	private Juego miJuego;
+
 	private ContadorTiempo tiempo;
-	
 	private boolean lock = false;
-	private int direction = -1;
+	private int tecla = -1;
 
 	/**
-	 * Launch the application.
+	 * Comienza la aplicacion.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -38,45 +37,47 @@ public class GUI extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Crea el frame.
 	 */
 	public GUI() {
 		addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyReleased(KeyEvent arg0) {
+			public void keyPressed(KeyEvent arg0) {
 				mover(arg0);
 			}
 		});
 		getContentPane().setLayout(null);
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 320, 320);
+		setBounds(350, 250, 1008, 454);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		miJuego = new Juego(this);
+
 		tiempo = new ContadorTiempo(miJuego, this);
 		tiempo.start();
 	}
-	
-	protected void mover(KeyEvent key){
-		if(!lock){
-			direction = key.getKeyCode();
+
+	protected void mover(KeyEvent key) {
+		if (!lock) {
+			tecla = key.getKeyCode();
 			this.lock = true;
 		}
 	}
-	
-	public boolean getLock(){
+
+	public boolean getLock() {
 		return this.lock;
 	}
-	
-	public void toggleLock(){
+
+	public void toggleLock() {
 		this.lock = !this.lock;
 	}
-	
-	public int getDirection(){
-		return this.direction;
+
+	public int getTecla() {
+		return tecla;
 	}
+
 }

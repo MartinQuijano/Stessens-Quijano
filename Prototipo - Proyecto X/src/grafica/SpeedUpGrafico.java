@@ -2,13 +2,12 @@ package grafica;
 
 import javax.swing.ImageIcon;
 
-public class BombaGrafico extends EntidadGrafica {
+public class SpeedUpGrafico extends EntidadGrafica {
 
-	public BombaGrafico(int x, int y) {
+	public SpeedUpGrafico(int x, int y) {
 		super(x, y);
 
 		this.mImages[0] = new ImageIcon(this.getClass().getResource(
-				"/res/Bomba.png"));
-
+				"/res/SpeedUp.png"));
 	}
 }

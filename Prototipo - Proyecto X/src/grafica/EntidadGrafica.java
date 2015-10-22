@@ -1,107 +1,80 @@
 package grafica;
 
-import java.awt.Point;
-
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
-import niveles.Celda;
-
 public abstract class EntidadGrafica {
-	protected JLabel grafico;
-	protected Icon image[];
-	protected final int width = 32;
-	protected final int height = 32;
 
-	protected int velocidad;
+	protected JLabel mGrafico;
+	protected Icon mImages[];
 
-	protected Point pos;
+	protected final int mWidth = 32;
+	protected final int mHeight = 32;
+
+	protected int mVelocidad;
+
+	protected int posX;
+	protected int posY;
+
+	protected EntidadGrafica(int x, int y) {
+		posX = x;
+		posY = y;
+
+		mVelocidad = 0;
+		this.mImages = new Icon[4];
+	}
 
 	protected EntidadGrafica(int velocidad, int x, int y) {
-		this.pos = new Point(x * this.width, y * this.height);
-		this.velocidad = velocidad;
- 
-		this.image = new Icon[4];
+		posX = x;
+		posY = y;
+		this.mVelocidad = velocidad;
+		this.mImages = new Icon[4];
 	}
 
 	public int getVelocidad() {
-		return velocidad;
+		return this.mVelocidad;
 	}
 
-	public Point getPos() {
-		return pos;
+	public int getPosicionX() {
+		return posX;
 	}
 
-	protected void changeIcon(int dir) {
-//		int direccion = -1;
-//
-//		switch (dir) {
-//		case Celda.UP:
-//			direccion = 0;
-//			break;
-//		case Celda.DOWN:
-//			direccion = 1;
-//			break;
-//		case Celda.LEFT:
-//			direccion = 2;
-//			break;
-//		case Celda.RIGHT:
-//			direccion = 3;
-//			break;
-//		}
-//
-//		this.grafico.setIcon(this.image[direccion]);
+	public int getPosicionY() {
+		return posY;
 	}
 
+	public void setPosX(int x) {
+		posX = x;
+	}
+
+	public void setPosY(int y) {
+		posY = y;
+	}
+
+	/**
+	 * Mueve la entidad en la direccion pasa por parametro.
+	 * 
+	 * @param dir
+	 *            direccion a la cual mover la entidad.
+	 */
 	public void mover(int dir) {
-//		if (this.grafico != null) {
-//			this.changeIcon(dir);
-//
-//			try {
-//				switch (dir) {
-//				case Celda.UP: // Arriba
-//					for (int i = 0; i < this.height; i += this.velocidad) {
-//						this.grafico.setBounds(this.pos.x,
-//								this.pos.y -= this.velocidad, width, height);
-//						Thread.sleep(100);
-//					}
-//					break;
-//				case Celda.DOWN: // Abajo
-//					for (int i = 0; i < this.height; i += this.velocidad) {
-//						this.grafico.setBounds(this.pos.x,
-//								this.pos.y += this.velocidad, width, height);
-//						Thread.sleep(100);
-//					}
-//					break;
-//				case Celda.RIGHT: // Derecha
-//					for (int i = 0; i < this.width; i += this.velocidad) {
-//						this.grafico.setBounds(this.pos.x += this.velocidad,
-//								this.pos.y, width, height);
-//						Thread.sleep(100);
-//					}
-//					break;
-//				case Celda.LEFT: // Izquierda
-//					for (int i = 0; i < this.width; i += this.velocidad) {
-//						this.grafico.setBounds(this.pos.x -= this.velocidad,
-//								this.pos.y, width, height);
-//						Thread.sleep(100);
-//					}
-//					break;
-//				}
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
+		if (this.mGrafico != null) {
+			this.mGrafico.setIcon(this.mImages[0]);
+			this.mGrafico.setBounds(posX, posY, this.mWidth, this.mHeight);
+		}
 	}
 
+	/**
+	 * Retorna el JLabel asociado a la entidad.
+	 * 
+	 * @return JLabel (imagen) asociado a la entidad.
+	 */
 	public JLabel getGrafico() {
-		if (this.grafico == null) {
-			this.grafico = new JLabel(image[0]);
-			this.grafico.setBounds(this.pos.x, this.pos.y, width, height);
+		if (this.mGrafico == null) {
+			this.mGrafico = new JLabel(this.mImages[0]);
+			this.mGrafico.setBounds(posX, posY, this.mWidth, this.mHeight);
 		}
-
-		return this.grafico;
+		return this.mGrafico;
 	}
 
 }

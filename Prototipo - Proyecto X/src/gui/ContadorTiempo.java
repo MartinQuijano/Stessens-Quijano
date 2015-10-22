@@ -5,24 +5,29 @@ import juego.Juego;
 public class ContadorTiempo extends Thread {
 
 	private Juego juego;
-	private GUI miGUI;
+	private GUI gui;
 
-	public ContadorTiempo(Juego j, GUI gui) {
+	ContadorTiempo(Juego j, GUI gui) {
 		this.juego = j;
-		this.miGUI = gui;
+		this.gui = gui;
 	}
 
+	/**
+	 * Ejecuta el hilo principal.
+	 */
 	public void run() {
-		while(true){
+		while (true) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			juego.mover();
-			if(miGUI.getLock()){
-				juego.mover(miGUI.getDirection());
-				miGUI.toggleLock();
+			juego.controlarExplosiones();
+			juego.obtNivel().revisarPosiciones();
+			if (gui.getLock()) {
+				juego.accionBomberman(gui.getTecla());
+				juego.obtNivel().revisarPosiciones();
+				gui.toggleLock();
 			}
 		}
 	}

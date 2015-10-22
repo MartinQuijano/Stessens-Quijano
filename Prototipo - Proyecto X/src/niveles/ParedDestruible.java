@@ -2,9 +2,16 @@ package niveles;
 
 import entidades.Bomberman;
 import entidades.Enemigo;
+import grafica.DestruibleGrafico;
+import grafica.IndestructibleGrafico;
 
-public class Indestructible extends Pared{
+public class ParedDestruible extends Pared{
 
+	public ParedDestruible(int x, int y){
+		super(x, y);
+		grafico = new DestruibleGrafico(x*32, y*32);
+	}
+	
 	public void avanzar(Bomberman b) {
 	}
 
@@ -17,4 +24,5 @@ public class Indestructible extends Pared{
 
 	public void destruir() {
 	}
+
 }

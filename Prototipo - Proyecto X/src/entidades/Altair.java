@@ -12,6 +12,7 @@ public class Altair extends Enemigo {
      */
     public Altair(int x, int y) {
     	super(x, y, 2);
+    	esEtereo = true;
     }
 
     /**
@@ -25,7 +26,21 @@ public class Altair extends Enemigo {
      * @return true si puede atravesar paredes, false caso contrario.
      */
     public boolean atraviesaParedes() {
-        return true;
+        return esEtereo;
     }
+
+	public void mover() {
+		
+	}
+
+	public void destruir() {
+		
+	}
+
+	@Override
+	public void mover(int dir) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

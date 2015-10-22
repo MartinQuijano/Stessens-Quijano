@@ -27,7 +27,19 @@ public class Sirius extends Enemigo {
      * @return true si puede atravesar paredes, false caso contrario.
      */
     public boolean atraviesaParedes() {
-        return false;
+        return esEtereo;
     }
+
+	public void mover() {
+	}
+
+	public void destruir() {
+	}
+
+	@Override
+	public void mover(int dir) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
