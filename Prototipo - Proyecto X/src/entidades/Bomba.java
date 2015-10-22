@@ -47,14 +47,6 @@ public class Bomba {
 		return posY;
 	}
 
-	/**
-	 * Incrementa el alcance que tienen las bombas en 1 celda mas en cada
-	 * direccion.
-	 */
-	public void aumentarAlcance() {
-		alcance++;
-	}
-
 	public JLabel getGrafico() {
 		return grafico.getGrafico();
 	}

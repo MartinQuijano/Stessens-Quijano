@@ -104,11 +104,11 @@ public class Nivel {
 
 	}
 
-	public int longitudX() {
+	public int obtLongitudX() {
 		return misCeldas.length;
 	}
 
-	public int longitudY() {
+	public int obtLongitudY() {
 		return misCeldas[0].length;
 	}
 }

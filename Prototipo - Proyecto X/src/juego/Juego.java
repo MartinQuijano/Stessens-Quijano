@@ -26,10 +26,6 @@ public class Juego {
 	protected Nivel nivel;
 	protected GUI gui;
 
-	private EnemigoThread mMalos;
-	private EnemigoThread mMalos2;
-	private EnemigoThread mMalos3;
-
 	protected LinkedList<Bomba> bombas;
 	protected LinkedList<Enemigo> enemigos;
 	protected LinkedList<PowerUp> powerUps;
@@ -39,6 +35,10 @@ public class Juego {
 		gui = g;
 		nivel = new Nivel(this);
 		nivel.generarNivel();
+
+		EnemigoThread mMalos;
+		EnemigoThread mMalos2;
+		EnemigoThread mMalos3;
 
 		bombas = new LinkedList<Bomba>();
 		enemigos = new LinkedList<Enemigo>();
@@ -69,8 +69,8 @@ public class Juego {
 		gui.add(speed.getGrafico());
 		gui.add(bombality.getGrafico());
 
-		for (int i = 0; i < nivel.longitudX(); i++) {
-			for (int j = 0; j < nivel.longitudY(); j++) {
+		for (int i = 0; i < nivel.obtLongitudX(); i++) {
+			for (int j = 0; j < nivel.obtLongitudY(); j++) {
 				if (nivel.obtCelda(i, j).obtPared() != null) {
 					gui.add(nivel.obtCelda(i, j).obtPared().getGrafico());
 				}
@@ -85,7 +85,9 @@ public class Juego {
 
 	/**
 	 * Mueve el enemigo 'e' en una direccion aleatoria.
-	 * @param e Enemigo el cual va a mover.
+	 * 
+	 * @param e
+	 *            Enemigo el cual va a mover.
 	 */
 	public void mover(Enemigo e) {
 
@@ -109,11 +111,13 @@ public class Juego {
 	}
 
 	/**
-	 * Mueve al Bomberman en la direccion pasada por parametro.
-	 * @param dir direccion en la cual se va a mover el Bomberman.
+	 * Acciona al Bomberman de acuerdo a la tecla pasada por parametro.
+	 * 
+	 * @param key
+	 *            tecla presionada
 	 */
-	public void accionBomberman(int dir) {
-		switch (dir) {
+	public void accionBomberman(int key) {
+		switch (key) {
 		case KeyEvent.VK_UP:
 			nivel.obtCelda(bomberman.obtX() / 32, bomberman.obtY() / 32 - 1)
 					.avanzar(bomberman);
@@ -131,15 +135,15 @@ public class Juego {
 					.avanzar(bomberman);
 			break;
 		case KeyEvent.VK_SPACE:
-			crearBomba();
+			colocarBomba();
 			break;
 		}
 	}
 
 	/**
-     * Llama al bomberman para que cree una bomba y la coloca en su posicion.
-     */
-	public void crearBomba() {
+	 * Llama al bomberman para que cree una bomba y la coloca en su posicion.
+	 */
+	public void colocarBomba() {
 		if (bomberman.tieneBombas()) {
 			BombaThread hBomba;
 
@@ -159,22 +163,24 @@ public class Juego {
 		}
 
 	}
-	
+
 	/**
-	 * De acuerdo a los powerups dentro de la lista recibida por parametro, los elimina de la lista
-	 * de powerups actual.
-	 * @param p lista con los powerups a eliminar.
+	 * De acuerdo a los powerups dentro de la lista recibida por parametro, los
+	 * elimina de la lista de powerups actual.
+	 * 
+	 * @param p
+	 *            lista con los powerups a eliminar.
 	 */
-	public void clearPowerUp(LinkedList<PowerUp> p){
-		for(PowerUp e : p){
+	public void clearPowerUp(LinkedList<PowerUp> p) {
+		for (PowerUp e : p) {
 			powerUps.remove(e);
 			gui.remove(e.getGrafico());
 		}
 	}
 
 	/**
-     * Revisa si las bombas explotaron y las remueve del grafico.
-     */
+	 * Revisa si las bombas explotaron y las remueve del grafico.
+	 */
 	public void controlarExplosiones() {
 		LinkedList<Bomba> bombasExplotadas = new LinkedList<Bomba>();
 		for (Bomba b : bombas) {
@@ -193,13 +199,6 @@ public class Juego {
 	 * @param b
 	 */
 	private void calcularEfectoBomba(Bomba b) {
-		// TODO implement here
-	}
-
-	/**
-     * 
-     */
-	public void moverEnemigos() {
 		// TODO implement here
 	}
 
