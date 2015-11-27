@@ -1,5 +1,7 @@
 package gui;
 
+import input.MouseInput;
+
 import java.awt.Canvas;
 import java.awt.Dimension;
 
@@ -29,13 +31,15 @@ public class GUI {
 	public GUI(Juego juego) {
 		width = 992;
 		height = 446;
-		
+
 		frame = new JFrame("Bomberman");
 		frame.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent arg0) {
 				mover(arg0);
 			}
 		});
+
+		
 
 		frame.setSize(width, height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,6 +56,8 @@ public class GUI {
 		frame.add(canvas);
 		frame.pack();
 
+		canvas.addMouseListener(new MouseInput(juego));
+		
 		tiempo = new ContadorTiempo(juego, this);
 		tiempo.start();
 	}

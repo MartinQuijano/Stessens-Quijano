@@ -1,5 +1,8 @@
 package juego;
 
+import input.MouseInput;
+
+import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
@@ -7,6 +10,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import powerups.PowerUp;
+import states.AyudaState;
 import states.GameState;
 import states.MenuState;
 import states.State;
@@ -28,7 +32,7 @@ import gui.GUI;
 /**
  * 
  */
-public class Juego implements Runnable {
+public class Juego extends Canvas implements Runnable {
 
 	protected int puntaje;
 	protected int tiempoS;
@@ -56,6 +60,8 @@ public class Juego implements Runnable {
 	// States
 	private State gameState;
 	private State menuState;
+	private State ayudaState;
+	private int state;
 
 	public Juego(int w, int h) {
 		Assets.init();
@@ -64,66 +70,34 @@ public class Juego implements Runnable {
 		nivel = new Nivel(this);
 		nivel.generarNivel();
 
-		tiempoS = 0;
-		tiempoM = 0;
-		tiempoH = 0;
-
-		EnemigoThread mMalos;
-		EnemigoThread mMalos2;
-		EnemigoThread mMalos3;
-		EnemigoThread mMalos4;
-		EnemigoThread mMalos5;
-		EnemigoThread mMalos6;
-
 		bombas = new LinkedList<Bomba>();
 		enemigos = new LinkedList<Enemigo>();
 		fuegos = new LinkedList<Fuego>();
 
+		state = 0;
+		
 		bomberman = new Bomberman(32, 32);
 
-		Enemigo enemigo = new Rugulo(32, 352);
-		nivel.obtCelda(32 / 32, 352 / 32).setPared(null);
-		Enemigo enemigo2 = new Rugulo(416, 320);
-		nivel.obtCelda(416 / 32, 320 / 32).setPared(null);
-		Enemigo enemigo3 = new Rugulo(704, 160);
-		nivel.obtCelda(704 / 32, 160 / 32).setPared(null);
-		Enemigo enemigo4 = new Altair(640, 224);
-		nivel.obtCelda(640 / 32, 224 / 32).setPared(null);
-		Enemigo enemigo5 = new Altair(736, 128);
-		nivel.obtCelda(736 / 32, 128 / 32).setPared(null);
-		Enemigo enemigo6 = new Sirius(928, 352);
-		nivel.obtCelda(928 / 32, 352 / 32).setPared(null);
-
-		mMalos = new EnemigoThread(enemigo, this);
-		mMalos2 = new EnemigoThread(enemigo2, this);
-		mMalos3 = new EnemigoThread(enemigo3, this);
-		mMalos4 = new EnemigoThread(enemigo4, this);
-		mMalos5 = new EnemigoThread(enemigo5, this);
-		mMalos6 = new EnemigoThread(enemigo6, this);
-
-		enemigos.add(enemigo);
-		enemigos.add(enemigo2);
-		enemigos.add(enemigo3);
-		enemigos.add(enemigo4);
-		enemigos.add(enemigo5);
-		enemigos.add(enemigo6);
-
-		mMalos.start();
-		mMalos2.start();
-		mMalos3.start();
-		mMalos4.start();
-		mMalos5.start();
-		mMalos6.start();
 	}
 
 	private void init() {
+
 		gui = new GUI(this);
 		gameState = new GameState(this, bomberman, bombas, enemigos, fuegos);
 		menuState = new MenuState(this);
-		State.setState(gameState);
+		ayudaState = new AyudaState(this);
+		State.setState(menuState);
 	}
 
 	private void update() {
+		if (state == 0) {
+			State.setState(menuState);
+		} else if (state == 1) {
+			State.setState(gameState);
+		} else if (state == 2) {
+			State.setState(ayudaState);
+		}
+
 		if (State.getState() != null)
 			State.getState().update();
 		tiempoAux++;
@@ -441,7 +415,7 @@ public class Juego implements Runnable {
 	}
 
 	public void limpiarEnemigos(LinkedList<Enemigo> destruidos) {
-		for (Enemigo e : destruidos) 
+		for (Enemigo e : destruidos)
 			enemigos.remove(e);
 	}
 
@@ -453,4 +427,59 @@ public class Juego implements Runnable {
 		nivel.controlarWinCond();
 	}
 
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
+	public void inicializar() {
+		EnemigoThread mMalos;
+		EnemigoThread mMalos2;
+		EnemigoThread mMalos3;
+		EnemigoThread mMalos4;
+		EnemigoThread mMalos5;
+		EnemigoThread mMalos6;
+
+		Enemigo enemigo = new Rugulo(32, 352);
+		nivel.obtCelda(32 / 32, 352 / 32).setPared(null);
+		Enemigo enemigo2 = new Rugulo(416, 320);
+		nivel.obtCelda(416 / 32, 320 / 32).setPared(null);
+		Enemigo enemigo3 = new Rugulo(704, 160);
+		nivel.obtCelda(704 / 32, 160 / 32).setPared(null);
+		Enemigo enemigo4 = new Altair(640, 224);
+		nivel.obtCelda(640 / 32, 224 / 32).setPared(null);
+		Enemigo enemigo5 = new Altair(736, 128);
+		nivel.obtCelda(736 / 32, 128 / 32).setPared(null);
+		Enemigo enemigo6 = new Sirius(928, 352);
+		nivel.obtCelda(928 / 32, 352 / 32).setPared(null);
+
+		mMalos = new EnemigoThread(enemigo, this);
+		mMalos2 = new EnemigoThread(enemigo2, this);
+		mMalos3 = new EnemigoThread(enemigo3, this);
+		mMalos4 = new EnemigoThread(enemigo4, this);
+		mMalos5 = new EnemigoThread(enemigo5, this);
+		mMalos6 = new EnemigoThread(enemigo6, this);
+
+		enemigos.add(enemigo);
+		enemigos.add(enemigo2);
+		enemigos.add(enemigo3);
+		enemigos.add(enemigo4);
+		enemigos.add(enemigo5);
+		enemigos.add(enemigo6);
+
+		mMalos.start();
+		mMalos2.start();
+		mMalos3.start();
+		mMalos4.start();
+		mMalos5.start();
+		mMalos6.start();
+		
+		tiempoS = 0;
+		tiempoM = 0;
+		tiempoH = 0;
+
+	}
 }

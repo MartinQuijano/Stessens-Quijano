@@ -22,13 +22,15 @@ public class ContadorTiempo extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			juego.controlarWin();
-			juego.controlarExplosiones();
-			juego.obtNivel().revisarPosiciones(juego.obtFuegos());
-			if (gui.getLock()) {
-				juego.accionBomberman(gui.getTecla());
-				gui.toggleLock();
+			if (juego.getState() == 1) {
+				juego.controlarWin();
+				juego.controlarExplosiones();
+				juego.obtNivel().revisarPosiciones(juego.obtFuegos());
+				if (gui.getLock()) {
+					juego.accionBomberman(gui.getTecla());
+					gui.toggleLock();
 
+				}
 			}
 		}
 	}

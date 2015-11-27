@@ -18,7 +18,7 @@ public class Nivel {
 	protected Juego miJuego;
 	protected Celda misCeldas[][];
 	protected int cantCeldas = 246;
-	protected double porcOcupadas = 0.1;
+	protected double porcOcupadas = 0.5;
 	protected int cantidadSpeedUp = 4;
 	protected int cantidadFatality = 3;
 	protected int cantidadBombality = 3;
