@@ -2,8 +2,6 @@ package entidades;
 
 import grafica.GraficaSirius;
 
-import java.awt.Graphics;
-
 /**
  * Sirius es un ex Bomberman que se paso al lado oscuro. No puede atravesar
  * paredes pero es tres veces más rapido que los Rugulos o Altair. Solo hay un
@@ -18,12 +16,7 @@ public class Sirius extends Enemigo {
 	 */
 	public Sirius(int x, int y) {
 		super(x, y, 8);
-		
 		grafica = new GraficaSirius(x, y);
-	}
-
-	public void dibujar(Graphics g) {
-		grafica.dibujar(g);
 	}
 
 	/**
@@ -33,22 +26,8 @@ public class Sirius extends Enemigo {
 		return 50;
 	}
 
-	/**
-	 * @return true si puede atravesar paredes, false caso contrario.
-	 */
-	public boolean atraviesaParedes() {
-		return esEtereo;
-	}
-
-	public void mover() {
-	}
-
-	public void destruir() {
-	}
-
 	public void mover(int dir) {
 		if (this.grafica != null) {
-			// this.changeIcon(dir);
 			try {
 				switch (dir) {
 				case 0: // Arriba

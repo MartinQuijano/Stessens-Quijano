@@ -9,7 +9,6 @@ public class ParedDestruible extends Pared {
 
 	public ParedDestruible(int x, int y, Celda c) {
 		super(x, y, c);
-
 		grafica = new GraficaParedDestruible(x, y);
 	}
 
@@ -49,7 +48,6 @@ public class ParedDestruible extends Pared {
 
 	public void dibujar(Graphics g) {
 		grafica.dibujar(g);
-
 	}
 
 }

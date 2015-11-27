@@ -46,8 +46,9 @@ public class Nivel {
 		if (!miJuego.obtBomberman().estaActivoMasacrality()) {
 			for (Enemigo e : enemigos) {
 				Celda c = obtCelda(e.obtX() / 32, e.obtY() / 32);
-				if (c.equals(obtCelda(posXbomberman / 32, posYbomberman / 32)))
-					System.exit(1);
+				if (c.equals(obtCelda(posXbomberman / 32, posYbomberman / 32))) {
+					miJuego.obtBomberman().destruir();
+				}
 			}
 		}
 
@@ -64,8 +65,9 @@ public class Nivel {
 		for (Fuego f : fuegos) {
 			Celda celd = obtCelda(f.obtX() / 32, f.obtY() / 32);
 			if (!miJuego.obtBomberman().estaActivoMasacrality())
-				if (celd.equals(celdBomberman))
-					System.exit(1);
+				if (celd.equals(celdBomberman)) {
+					miJuego.obtBomberman().destruir();
+				}
 			for (Enemigo e : enemigos) {
 				if (celd.equals(obtCelda(e.obtX() / 32, e.obtY() / 32))) {
 					miJuego.setPuntaje(miJuego.getPuntaje() + e.getPuntaje());

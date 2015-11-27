@@ -1,7 +1,6 @@
 package entidades;
 
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 
 import grafica.EntidadGrafica;
 
@@ -66,6 +65,13 @@ public abstract class Entidad {
 	public int obtVelocidad() {
 		return velocidad;
 	}
-	
-	public abstract void dibujar(Graphics g);
+
+	/**
+	 * Invoca a la grafica asociada a esta entidad para que dibuje por pantalla.
+	 * 
+	 * @param g
+	 */
+	public void dibujar(Graphics g) {
+		grafica.dibujar(g);
+	}
 }

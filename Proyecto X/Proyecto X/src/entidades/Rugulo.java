@@ -2,8 +2,6 @@ package entidades;
 
 import grafica.GraficaRugulo;
 
-import java.awt.Graphics;
-
 /**
  * Los rugulos son personajes muy tontos y lentos. Se desplazan por los lugares
  * donde no hay paredes y deciden hacia dodne ir en forma aleatoria. En el nivel
@@ -21,10 +19,6 @@ public class Rugulo extends Enemigo {
 		grafica = new GraficaRugulo(x, y);
 	}
 
-	public void dibujar(Graphics g) {
-		grafica.dibujar(g);
-	}
-
 	/**
 	 * @return puntaje otorgado al matarlo.
 	 */
@@ -32,16 +26,8 @@ public class Rugulo extends Enemigo {
 		return 15;
 	}
 
-	/**
-	 * @return true si puede atravesar paredes, false caso contrario.
-	 */
-	public boolean atraviesaParedes() {
-		return esEtereo;
-	}
-
 	public void mover(int dir) {
 		if (this.grafica != null) {
-			// this.changeIcon(dir);
 			try {
 				switch (dir) {
 				case 0: // Arriba

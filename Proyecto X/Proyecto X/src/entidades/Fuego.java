@@ -2,8 +2,6 @@ package entidades;
 
 import grafica.GraficaFuego;
 
-import java.awt.Graphics;
-
 public class Fuego extends Entidad {
 
 	protected boolean seConsumio = false;
@@ -13,11 +11,10 @@ public class Fuego extends Entidad {
 
 		grafica = new GraficaFuego(x, y);
 	}
-
-	public void dibujar(Graphics g) {
-		grafica.dibujar(g);
-	}
 	
+	/**
+	 * Establece al fuego como consumido.
+	 */
 	public void destruir(){
 		seConsumio = true;
 	}

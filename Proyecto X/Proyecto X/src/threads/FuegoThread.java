@@ -1,19 +1,15 @@
 package threads;
 
-import juego.Juego;
-import entidades.Enemigo;
 import entidades.Fuego;
 
 public class FuegoThread extends Thread{
 
 	private Fuego fuegoLogica;
-	private Juego juego;
 
 	private volatile boolean fuegoDetener;
 
-	public FuegoThread(Fuego logica, Juego j) {
+	public FuegoThread(Fuego logica) {
 		fuegoLogica = logica;
-		juego = j;
 		fuegoDetener = false;
 	}
 
@@ -44,9 +40,6 @@ public class FuegoThread extends Thread{
 	public void destruir() {
 		// Detengo la ejecucion del hilo.
 		this.detener();
-
-		// Notificamos a la logica que este hilo se destruyo.
-		//this.fuegoLogica.destruir();
 	}
 }
 

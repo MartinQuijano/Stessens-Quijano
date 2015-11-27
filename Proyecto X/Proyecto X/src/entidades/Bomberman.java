@@ -1,10 +1,6 @@
 package entidades;
 
-import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-
-import grafica.Animation;
-import grafica.Assets;
 import grafica.GraficaBomberman;
 
 /**
@@ -31,13 +27,8 @@ public class Bomberman extends Entidad {
 		alcanceBomba = 1;
 		masacralityActivo = false;
 		esEtereo = false;
-
+		estaVivo = true;
 		grafica = new GraficaBomberman(x, y);
-
-	}
-
-	public void dibujar(Graphics g) {
-		grafica.dibujar(g);
 	}
 
 	/**
@@ -115,7 +106,6 @@ public class Bomberman extends Entidad {
 	 * Activa/Desactiva masacrality.
 	 */
 	public void setMasacrality() {
-		System.out.println("in or off");
 		if (masacralityActivo) {
 			masacralityActivo = false;
 			esEtereo = false;

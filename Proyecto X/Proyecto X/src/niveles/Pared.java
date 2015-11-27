@@ -1,10 +1,7 @@
 package niveles;
 
 import java.awt.Graphics;
-import java.util.LinkedList;
-
 import powerups.PowerUp;
-import entidades.Bomba;
 import entidades.Bomberman;
 import entidades.Enemigo;
 import grafica.EntidadGrafica;

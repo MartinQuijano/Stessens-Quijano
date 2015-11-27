@@ -1,9 +1,6 @@
 package niveles;
 
 import java.awt.Graphics;
-import java.util.LinkedList;
-
-import entidades.Bomba;
 import entidades.Bomberman;
 import entidades.Enemigo;
 import grafica.GraficaParedIndestructible;

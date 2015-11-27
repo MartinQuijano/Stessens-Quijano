@@ -1,23 +1,19 @@
 package juego;
 
-import input.MouseInput;
-
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.util.LinkedList;
 import java.util.Random;
-
-import powerups.PowerUp;
 import states.AyudaState;
 import states.GameState;
 import states.MenuState;
+import states.PerderState;
 import states.State;
 import threads.BombaThread;
 import threads.EnemigoThread;
 import threads.FuegoThread;
-import niveles.Celda;
 import niveles.Nivel;
 import entidades.Altair;
 import entidades.Bomba;
@@ -33,7 +29,8 @@ import gui.GUI;
  * 
  */
 public class Juego extends Canvas implements Runnable {
-
+	private static final long serialVersionUID = 1L;
+	
 	protected int puntaje;
 	protected int tiempoS;
 	protected int tiempoM;
@@ -57,10 +54,10 @@ public class Juego extends Canvas implements Runnable {
 	protected LinkedList<Fuego> fuegos;
 	protected Bomberman bomberman;
 
-	// States
 	private State gameState;
 	private State menuState;
 	private State ayudaState;
+	private State perderState;
 	private int state;
 
 	public Juego(int w, int h) {
@@ -75,7 +72,7 @@ public class Juego extends Canvas implements Runnable {
 		fuegos = new LinkedList<Fuego>();
 
 		state = 0;
-		
+
 		bomberman = new Bomberman(32, 32);
 
 	}
@@ -86,6 +83,7 @@ public class Juego extends Canvas implements Runnable {
 		gameState = new GameState(this, bomberman, bombas, enemigos, fuegos);
 		menuState = new MenuState(this);
 		ayudaState = new AyudaState(this);
+		perderState = new PerderState(this);
 		State.setState(menuState);
 	}
 
@@ -96,6 +94,8 @@ public class Juego extends Canvas implements Runnable {
 			State.setState(gameState);
 		} else if (state == 2) {
 			State.setState(ayudaState);
+		} else if (state == 3) {
+			State.setState(perderState);
 		}
 
 		if (State.getState() != null)
@@ -288,7 +288,7 @@ public class Juego extends Canvas implements Runnable {
 
 		if (nivel.obtCelda(b.obtX() / 32, b.obtY() / 32).obtPared() == null) {
 			Fuego fuego0 = new Fuego(b.obtX(), b.obtY(), 0);
-			FuegoThread hiloFuego0 = new FuegoThread(fuego0, this);
+			FuegoThread hiloFuego0 = new FuegoThread(fuego0);
 			hiloFuego0.start();
 			fuegos.add(fuego0);
 		}
@@ -304,7 +304,7 @@ public class Juego extends Canvas implements Runnable {
 						.obtPared() == null) {
 					Fuego fuego1 = new Fuego(b.obtX(), b.obtY() - 32 * (i + 1),
 							0);
-					FuegoThread hiloFuego1 = new FuegoThread(fuego1, this);
+					FuegoThread hiloFuego1 = new FuegoThread(fuego1);
 					hiloFuego1.start();
 					fuegos.add(fuego1);
 				} else {
@@ -321,7 +321,7 @@ public class Juego extends Canvas implements Runnable {
 						.obtPared() == null) {
 					Fuego fuego2 = new Fuego(b.obtX(), b.obtY() + 32 * (i + 1),
 							0);
-					FuegoThread hiloFuego2 = new FuegoThread(fuego2, this);
+					FuegoThread hiloFuego2 = new FuegoThread(fuego2);
 					hiloFuego2.start();
 					fuegos.add(fuego2);
 
@@ -339,7 +339,7 @@ public class Juego extends Canvas implements Runnable {
 						.obtPared() == null) {
 					Fuego fuego3 = new Fuego(b.obtX() + 32 * (i + 1), b.obtY(),
 							0);
-					FuegoThread hiloFuego3 = new FuegoThread(fuego3, this);
+					FuegoThread hiloFuego3 = new FuegoThread(fuego3);
 					hiloFuego3.start();
 					fuegos.add(fuego3);
 				} else {
@@ -356,7 +356,7 @@ public class Juego extends Canvas implements Runnable {
 						.obtPared() == null) {
 					Fuego fuego4 = new Fuego(b.obtX() - 32 * (i + 1), b.obtY(),
 							0);
-					FuegoThread hiloFuego4 = new FuegoThread(fuego4, this);
+					FuegoThread hiloFuego4 = new FuegoThread(fuego4);
 					hiloFuego4.start();
 					fuegos.add(fuego4);
 				} else {
@@ -476,10 +476,16 @@ public class Juego extends Canvas implements Runnable {
 		mMalos4.start();
 		mMalos5.start();
 		mMalos6.start();
-		
+
 		tiempoS = 0;
 		tiempoM = 0;
 		tiempoH = 0;
 
+	}
+
+	public void terminar() {
+		if (!bomberman.sigueVivo()) {
+			state = 3;
+		}
 	}
 }

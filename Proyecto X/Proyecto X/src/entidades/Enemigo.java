@@ -12,17 +12,9 @@ public abstract class Enemigo extends Entidad {
 	public abstract int getPuntaje();
 
 	/**
-	 * @return true si puede atravesar paredes, false caso contrario.
+	 * Ejecuta el movimiento del enemigo.
 	 */
-	public abstract boolean atraviesaParedes();
-
 	public void mover(int dir) {
-		System.out.println("LOLOL");
-	//	super.mover(dir);
-	}
-
-	public void destruir() {
-		// super.destruir();
 	}
 
 }

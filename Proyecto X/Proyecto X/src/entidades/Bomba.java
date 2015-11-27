@@ -2,7 +2,6 @@ package entidades;
 
 import grafica.EntidadGrafica;
 import grafica.GraficaBomba;
-
 import java.awt.Graphics;
 
 /**
@@ -15,7 +14,6 @@ public class Bomba {
 	protected int posY;
 	protected boolean exploto;
 	protected int alcance;
-
 	protected EntidadGrafica grafica;
 	
 	public Bomba(int x, int y, int alc) {
@@ -57,7 +55,6 @@ public class Bomba {
 
 	public void dibujar(Graphics g) {
 		grafica.dibujar(g);
-		
 	}
 	
 	public int obtAlcance(){

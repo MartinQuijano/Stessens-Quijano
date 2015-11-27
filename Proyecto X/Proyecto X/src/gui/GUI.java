@@ -1,15 +1,10 @@
 package gui;
 
 import input.MouseInput;
-
 import java.awt.Canvas;
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import juego.Juego;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 

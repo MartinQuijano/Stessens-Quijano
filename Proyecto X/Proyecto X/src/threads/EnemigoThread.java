@@ -41,8 +41,5 @@ public class EnemigoThread extends Thread {
 	public void destruir() {
 		// Detengo la ejecucion del hilo.
 		this.detener();
-
-		// Notificamos a la logica que este hilo se destruyo.
-		this.enemigoLogica.destruir();
 	}
 }

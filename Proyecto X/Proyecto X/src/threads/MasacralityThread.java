@@ -1,8 +1,6 @@
 package threads;
 
-import juego.Juego;
 import entidades.Bomberman;
-import entidades.Fuego;
 
 public class MasacralityThread extends Thread {
 

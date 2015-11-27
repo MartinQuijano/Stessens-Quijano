@@ -26,6 +26,7 @@ public class ContadorTiempo extends Thread {
 				juego.controlarWin();
 				juego.controlarExplosiones();
 				juego.obtNivel().revisarPosiciones(juego.obtFuegos());
+				juego.terminar();
 				if (gui.getLock()) {
 					juego.accionBomberman(gui.getTecla());
 					gui.toggleLock();
