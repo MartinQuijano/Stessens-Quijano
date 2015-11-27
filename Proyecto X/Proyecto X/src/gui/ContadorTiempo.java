@@ -22,6 +22,7 @@ public class ContadorTiempo extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			juego.controlarWin();
 			juego.controlarExplosiones();
 			juego.obtNivel().revisarPosiciones(juego.obtFuegos());
 			if (gui.getLock()) {

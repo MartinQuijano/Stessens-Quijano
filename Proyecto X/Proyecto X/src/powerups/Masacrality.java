@@ -1,6 +1,7 @@
 package powerups;
 
 
+import threads.MasacralityThread;
 import entidades.Bomberman;
 import grafica.GraficaMasacrality;
 
@@ -13,7 +14,9 @@ public class Masacrality extends PowerUp {
 	}
 
 	public void afectarBomberman(Bomberman b) {
-
+		b.setMasacrality();
+		MasacralityThread mscThread = new MasacralityThread(b);
+		mscThread.start();
 	}
 
 	public int getPuntaje() {

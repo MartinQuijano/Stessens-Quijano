@@ -19,7 +19,7 @@ public class ParedIndestructible extends Pared {
 	public void avanzar(Bomberman b) {
 	}
 
-	public void avanzarEnemigo(Enemigo e, LinkedList<Bomba> bombas) {
+	public void avanzarEnemigo(Enemigo e) {
 	}
 
 	public int getPuntaje() {

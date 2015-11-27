@@ -29,6 +29,8 @@ public class Bomberman extends Entidad {
 		bombasHabiles = 1;
 		cantMaxBombas = 1;
 		alcanceBomba = 1;
+		masacralityActivo = false;
+		esEtereo = false;
 
 		grafica = new GraficaBomberman(x, y);
 
@@ -96,7 +98,10 @@ public class Bomberman extends Entidad {
 	 * @return true si tiene bombas para poner, false caso contrario.
 	 */
 	public boolean tieneBombas() {
-		return (bombasHabiles > 0);
+		if (masacralityActivo)
+			return true;
+		else
+			return (bombasHabiles > 0);
 	}
 
 	/**
@@ -110,6 +115,7 @@ public class Bomberman extends Entidad {
 	 * Activa/Desactiva masacrality.
 	 */
 	public void setMasacrality() {
+		System.out.println("in or off");
 		if (masacralityActivo) {
 			masacralityActivo = false;
 			esEtereo = false;
@@ -121,7 +127,6 @@ public class Bomberman extends Entidad {
 
 	public void mover(int dir) {
 		if (this.grafica != null) {
-			// this.changeIcon(dir);
 			try {
 				switch (dir) {
 				case KeyEvent.VK_UP: // Arriba
@@ -177,6 +182,10 @@ public class Bomberman extends Entidad {
 
 	public int obtCantMaxBombas() {
 		return cantMaxBombas;
+	}
+
+	public boolean estaActivoMasacrality() {
+		return masacralityActivo;
 	}
 
 }

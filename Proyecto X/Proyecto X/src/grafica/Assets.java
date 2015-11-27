@@ -81,9 +81,9 @@ public class Assets {
 				.crop(2 * width, 2 * height, width, height);
 
 		rugulo_up = new BufferedImage[3];
-		rugulo_up[0] = altairSheet.crop(0 * width, 3 * height, width, height);
-		rugulo_up[1] = altairSheet.crop(1 * width, 3 * height, width, height);
-		rugulo_up[2] = altairSheet.crop(2 * width, 3 * height, width, height);
+		rugulo_up[0] = ruguloSheet.crop(0 * width, 3 * height, width, height);
+		rugulo_up[1] = ruguloSheet.crop(1 * width, 3 * height, width, height);
+		rugulo_up[2] = ruguloSheet.crop(2 * width, 3 * height, width, height);
 
 		altair_down = new BufferedImage[3];
 		altair_down[0] = altairSheet.crop(0 * width, 0 * height, width, height);

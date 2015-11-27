@@ -18,7 +18,7 @@ public class Nivel {
 	protected Juego miJuego;
 	protected Celda misCeldas[][];
 	protected int cantCeldas = 246;
-	protected double porcOcupadas = 0.5;
+	protected double porcOcupadas = 0.1;
 	protected int cantidadSpeedUp = 4;
 	protected int cantidadFatality = 3;
 	protected int cantidadBombality = 3;
@@ -43,17 +43,19 @@ public class Nivel {
 		int posYbomberman = miJuego.obtBomberman().obtY();
 		Celda celdBomberman = obtCelda(posXbomberman / 32, posYbomberman / 32);
 		LinkedList<Enemigo> enemigos = miJuego.obtEnemigos();
-		for (Enemigo e : enemigos) {
-			Celda c = obtCelda(e.obtX() / 32, e.obtY() / 32);
-			if (c.equals(obtCelda(posXbomberman / 32, posYbomberman / 32)))
-				System.exit(1);
+		if (!miJuego.obtBomberman().estaActivoMasacrality()) {
+			for (Enemigo e : enemigos) {
+				Celda c = obtCelda(e.obtX() / 32, e.obtY() / 32);
+				if (c.equals(obtCelda(posXbomberman / 32, posYbomberman / 32)))
+					System.exit(1);
+			}
 		}
 
 		PowerUp powerUp;
 		if (misCeldas[posXbomberman / 32][posYbomberman / 32].getPowerUp() != null) {
-			powerUp = misCeldas[posXbomberman/32][posYbomberman/32].getPowerUp();
-			miJuego.setPuntaje(miJuego.obtPuntaje()
-					+ powerUp.getPuntaje());
+			powerUp = misCeldas[posXbomberman / 32][posYbomberman / 32]
+					.getPowerUp();
+			miJuego.setPuntaje(miJuego.obtPuntaje() + powerUp.getPuntaje());
 			powerUp.afectarBomberman(miJuego.obtBomberman());
 			misCeldas[posXbomberman / 32][posYbomberman / 32].setPowerUp(null);
 		}
@@ -61,8 +63,9 @@ public class Nivel {
 		LinkedList<Enemigo> destruidos = new LinkedList<Enemigo>();
 		for (Fuego f : fuegos) {
 			Celda celd = obtCelda(f.obtX() / 32, f.obtY() / 32);
-			if (celd.equals(celdBomberman))
-				System.exit(1);
+			if (!miJuego.obtBomberman().estaActivoMasacrality())
+				if (celd.equals(celdBomberman))
+					System.exit(1);
 			for (Enemigo e : enemigos) {
 				if (celd.equals(obtCelda(e.obtX() / 32, e.obtY() / 32))) {
 					miJuego.setPuntaje(miJuego.getPuntaje() + e.getPuntaje());
@@ -201,4 +204,21 @@ public class Nivel {
 	public int obtLongitudY() {
 		return misCeldas[0].length;
 	}
+
+	public void controlarWinCond() {
+		boolean win = true;
+		for (int i = 1; i < misCeldas.length - 1; i++) {
+			for (int j = 1; j < misCeldas[0].length - 1; j++) {
+				if (i % 2 != 0 && j % 2 != 0) {
+					if (misCeldas[i][j].getPared() != null) {
+						win = false;
+					}
+				}
+			}
+		}
+		if (win) {
+			System.exit(1);
+		}
+	}
+
 }

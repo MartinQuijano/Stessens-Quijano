@@ -89,8 +89,8 @@ public class Juego implements Runnable {
 		nivel.obtCelda(704 / 32, 160 / 32).setPared(null);
 		Enemigo enemigo4 = new Altair(640, 224);
 		nivel.obtCelda(640 / 32, 224 / 32).setPared(null);
-		Enemigo enemigo5 = new Altair(768, 128);
-		nivel.obtCelda(768 / 32, 128 / 32).setPared(null);
+		Enemigo enemigo5 = new Altair(736, 128);
+		nivel.obtCelda(736 / 32, 128 / 32).setPared(null);
 		Enemigo enemigo6 = new Sirius(928, 352);
 		nivel.obtCelda(928 / 32, 352 / 32).setPared(null);
 
@@ -117,9 +117,7 @@ public class Juego implements Runnable {
 	}
 
 	private void init() {
-		// Assets.init();
 		gui = new GUI(this);
-
 		gameState = new GameState(this, bomberman, bombas, enemigos, fuegos);
 		menuState = new MenuState(this);
 		State.setState(gameState);
@@ -276,20 +274,6 @@ public class Juego implements Runnable {
 			hBomba.start();
 		}
 	}
-
-	// /**
-	// * De acuerdo a los powerups dentro de la lista recibida por parametro,
-	// los
-	// * elimina de la lista de powerups actual.
-	// *
-	// * @param p
-	// * lista con los powerups a eliminar.
-	// */
-	// public void clearPowerUp(LinkedList<PowerUp> p) {
-	// for (PowerUp e : p) {
-	// powerUps.remove(e);
-	// }
-	// }
 
 	/**
 	 * Revisa si las bombas explotaron y las remueve del grafico.
@@ -463,6 +447,10 @@ public class Juego implements Runnable {
 
 	public int obtTiempoH() {
 		return tiempoH;
+	}
+
+	public void controlarWin() {
+		nivel.controlarWinCond();
 	}
 
 }

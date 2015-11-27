@@ -25,7 +25,7 @@ public abstract class Pared {
 
 	public abstract void avanzar(Bomberman b);
 
-	public abstract void avanzarEnemigo(Enemigo e, LinkedList<Bomba> bombas);
+	public abstract void avanzarEnemigo(Enemigo e);
 
 	public abstract int getPuntaje();
 

@@ -41,7 +41,9 @@ public class Celda {
 			if (bomb.obtX() == posX && bomb.obtY() == posY)
 				hayBomba = true;
 		}
-		if (miPared == null && !hayBomba) {
+		if (b.esEtereo() && miPared != null) {
+			miPared.avanzar(b);
+		} else if (miPared == null && !hayBomba) {
 			if (b.obtX() < posX)
 				b.mover(39);
 			else if (b.obtX() > posX)
@@ -64,11 +66,11 @@ public class Celda {
 	public void avanzarEnemigo(Enemigo e, LinkedList<Bomba> bombas) {
 		boolean hayBomba = false;
 		for (Bomba bomb : bombas) {
-			if ((bomb.obtX() == posX && bomb.obtY() == posY) || e.esEtereo())
+			if ((bomb.obtX() == posX && bomb.obtY() == posY))
 				hayBomba = true;
 		}
 		if (e.esEtereo() && miPared != null) {
-				miPared.avanzarEnemigo(e, bombas);
+			miPared.avanzarEnemigo(e);
 		} else if ((miPared == null && !hayBomba) || e.esEtereo()) {
 			if (e.obtY() > posY) {
 				e.mover(0);

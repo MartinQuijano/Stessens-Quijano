@@ -1,10 +1,6 @@
 package niveles;
 
 import java.awt.Graphics;
-import java.util.LinkedList;
-
-import powerups.PowerUp;
-import entidades.Bomba;
 import entidades.Bomberman;
 import entidades.Enemigo;
 import grafica.GraficaParedDestruible;
@@ -18,9 +14,17 @@ public class ParedDestruible extends Pared {
 	}
 
 	public void avanzar(Bomberman b) {
+		if (b.obtX() < x)
+			b.mover(39);
+		else if (b.obtX() > x)
+			b.mover(37);
+		else if (b.obtY() < y)
+			b.mover(40);
+		else if (b.obtY() > y)
+			b.mover(38);
 	}
 
-	public void avanzarEnemigo(Enemigo e, LinkedList<Bomba> bombas) {
+	public void avanzarEnemigo(Enemigo e) {
 		if (e.obtY() > y) {
 			e.mover(0);
 		} else if (e.obtY() < y) {
