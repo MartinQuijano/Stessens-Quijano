@@ -1,7 +1,9 @@
 package niveles;
 
 import java.awt.Graphics;
+import java.util.AbstractQueue;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 
 import powerups.Bombality;
@@ -91,7 +93,7 @@ public class Nivel {
 
 		for (int i = 0; i < misCeldas.length; i++) {
 			for (int j = 0; j < misCeldas[0].length; j++) {
-				misCeldas[i][j] = new Celda(i, j);
+				misCeldas[i][j] = new Celda(i, j, this);
 				random = r.nextInt(2);
 				misCeldas[i][j].setValue(random);
 				if (i == 0)
@@ -223,4 +225,102 @@ public class Nivel {
 		}
 	}
 
+	/**
+	 * Devuelve una lista con las celdas que llevan al enemigo hasta el bomberman.
+	 * @param celda
+	 * @param listaCamino
+	 * @return
+	 */
+	public LinkedList<Celda> caminosPosiblesBFS(Celda celda,
+			LinkedList<Celda> listaCamino) {
+		LinkedList<Celda> cola = new LinkedList<Celda>();
+		cola.add(celda);
+		celda.setVisitada(true);
+		boolean seguir = true;
+		while (!cola.isEmpty() && seguir) {
+			celda = cola.getFirst();
+			listaCamino.add(celda);
+			cola.removeFirst();
+			for (Celda c : celda.getVecinas()) {
+				if (c.getPared() == null && !c.isVisitada() && seguir) {
+					c.setVisitada(true);
+					cola.add(c);
+				}
+			}
+			if (celda.equals(obtCelda(miJuego.obtBomberman().obtX() / 32,
+					miJuego.obtBomberman().obtY() / 32))) {
+				seguir = false;
+			}
+		}
+		return listaCamino;
+	}
+
+	/**
+	 * Limpia la lista de camino, dejando solo el camino mas directo.
+	 * @param camino
+	 * @return
+	 */
+	public LinkedList<Celda> caminoFinal(LinkedList<Celda> camino) {
+		LinkedList<Celda> aLimpiar = new LinkedList<Celda>();
+		for (Celda c : camino) {
+			aLimpiar.addFirst(c);
+		}
+		camino.clear();
+		for (Celda c : aLimpiar) {
+			camino.add(c);
+		}
+		aLimpiar.clear();
+		Celda celda = camino.getFirst();
+		boolean si = false;
+		for (Celda c : camino) {
+			if (c.equals(celda))
+				si = true;
+			else
+				for (Celda cAux : celda.getVecinas()) {
+					if (cAux.equals(c)) {		
+						si = true;
+					}
+				}
+			if (!si) {
+				aLimpiar.add(c);
+			} else{
+				celda = c;
+				si = false;
+			}
+		}
+	
+		for (Celda c : aLimpiar) {
+			camino.remove(c);
+		}
+		aLimpiar.clear();
+		for (Celda c : camino) {
+			aLimpiar.addFirst(c);
+		}
+		camino.clear();
+		for (Celda c : aLimpiar) {
+			camino.add(c);
+		}
+
+		return camino;
+	}
+
+	public LinkedList<Celda> caminoMasCorto(LinkedList<LinkedList<Celda>> ldl) {
+		LinkedList<Celda> masCorto = new LinkedList<Celda>();
+		if (ldl.size() != 0) {
+			masCorto = ldl.getFirst();
+			for (LinkedList<Celda> lc : ldl) {
+				if (lc.size() < masCorto.size())
+					masCorto = lc;
+			}
+		}
+		return masCorto;
+	}
+
+	public void desmarcarCeldas() {
+		for (int i = 0; i < misCeldas.length; i++) {
+			for (int j = 0; j < misCeldas[0].length; j++) {
+				misCeldas[i][j].setVisitada(false);
+			}
+		}
+	}
 }

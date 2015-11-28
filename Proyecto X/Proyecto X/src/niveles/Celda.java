@@ -18,12 +18,15 @@ public class Celda {
 	protected Pared miPared;
 	protected GraficaCelda grafica;
 	protected PowerUp miPowerUp;
+	protected Nivel miNivel;
 
-	public Celda(int x, int y) {
+	protected boolean visitada = false;
+
+	public Celda(int x, int y, Nivel miNivel) {
 		posX = x * 32;
 		posY = y * 32;
-
 		grafica = new GraficaCelda(x, y, 0);
+		this.miNivel = miNivel;
 	}
 
 	/**
@@ -136,6 +139,28 @@ public class Celda {
 
 	public void setPowerUp(PowerUp p) {
 		miPowerUp = p;
+	}
+
+	public boolean isVisitada() {
+		return visitada;
+	}
+
+	public void setVisitada(boolean visitada) {
+		this.visitada = visitada;
+	}
+
+	public LinkedList<Celda> getVecinas() {
+		LinkedList<Celda> celdas = new LinkedList<Celda>();
+
+		if (miNivel.obtCelda(posX / 32 - 1, posY / 32).getPared() == null)
+			celdas.add(miNivel.obtCelda(posX / 32 - 1, posY / 32));
+		if (miNivel.obtCelda(posX / 32, posY / 32 - 1).getPared() == null)
+			celdas.add(miNivel.obtCelda(posX / 32, posY / 32 - 1));
+		if (miNivel.obtCelda(posX / 32 + 1, posY / 32).getPared() == null)
+			celdas.add(miNivel.obtCelda(posX / 32 + 1, posY / 32));
+		if (miNivel.obtCelda(posX / 32, posY / 32 + 1).getPared() == null)
+			celdas.add(miNivel.obtCelda(posX / 32, posY / 32 + 1));
+		return celdas;
 	}
 
 }

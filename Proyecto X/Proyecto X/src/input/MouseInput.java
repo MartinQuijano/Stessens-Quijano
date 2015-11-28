@@ -44,7 +44,7 @@ public class MouseInput implements MouseListener {
 		}
 		if (juego.getState() == 2) {
 			// Boton volver
-			if (mx >= 700 && mx <= 850)
+			if (mx >= 690 && mx <= 930)
 				if (my >= 300 && my <= 360)
 					juego.setState(0);
 		}

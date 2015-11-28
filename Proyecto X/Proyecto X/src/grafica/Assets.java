@@ -8,7 +8,7 @@ public class Assets {
 
 	public static BufferedImage bomberman, sueloRoca1, muroDest, muroIndes,
 			rugulo, sueloRoca2, bomba, speedUp, bombality, masacrality,
-			fatality, fuego, mainMenu;
+			fatality, fuego, mainMenu, jugar, volver, ayuda;
 	public static BufferedImage[] player_down, player_left, player_right,
 			player_up;
 	public static BufferedImage[] rugulo_down, rugulo_left, rugulo_right,
@@ -30,8 +30,14 @@ public class Assets {
 		SpriteSheet siriusSheet = new SpriteSheet(
 				ImageLoader.loadImage("/res/sirius.png"));
 		SpriteSheet menu = new SpriteSheet(ImageLoader.loadImage("/res/mainMenu.png"));
+		SpriteSheet jugarSS = new SpriteSheet(ImageLoader.loadImage("/res/jugar.png"));
+		SpriteSheet ayudaSS = new SpriteSheet(ImageLoader.loadImage("/res/ayuda.png"));
+		SpriteSheet volverSS = new SpriteSheet(ImageLoader.loadImage("/res/volver.png"));
 
 		mainMenu = menu.crop(0, 0, 992, 446);
+		jugar = jugarSS.crop(0, 0, 200, 50);
+		volver = volverSS.crop(0, 0, 218, 50);
+		ayuda = ayudaSS.crop(0, 0, 200, 50);
 				
 		player_down = new BufferedImage[3];
 		player_down[0] = bombermanSheet.crop(0 * width, 0 * height, width,

@@ -28,8 +28,8 @@ public class AyudaState extends State {
 		g.drawString("- Con la barra espaciadora se colocan ", 600, 200);
 		g.drawString("  las bombas. ", 600, 220);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 35)); 
-		g.drawRect(700, 300, 150, 60);
-		g.drawString(" - Volver", 700, 340);
+		g.drawRect(690, 300, 240, 60);
+		g.drawImage(Assets.volver, 700, 305, null);
 	}
 
 }

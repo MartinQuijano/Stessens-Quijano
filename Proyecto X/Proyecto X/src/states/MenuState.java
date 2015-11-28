@@ -22,9 +22,9 @@ public class MenuState extends State{
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 40)); 
 		g.drawRect(620, 100, 250, 60);
-		g.drawString(" - Nuevo Juego", 620, 140);
+		g.drawImage(Assets.jugar, 640, 105, null);
 		g.drawRect(620, 200, 250, 60);
-		g.drawString(" - Ayuda", 620, 240);
+		g.drawImage(Assets.ayuda, 640, 205, null);
 	}
 
 }

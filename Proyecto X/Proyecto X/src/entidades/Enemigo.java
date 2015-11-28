@@ -1,5 +1,6 @@
 package entidades;
 
+
 public abstract class Enemigo extends Entidad {
 
 	protected Enemigo(int x, int y, int vel) {

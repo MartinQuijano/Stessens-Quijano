@@ -453,7 +453,7 @@ public class Juego extends Canvas implements Runnable {
 		nivel.obtCelda(640 / 32, 224 / 32).setPared(null);
 		Enemigo enemigo5 = new Altair(736, 128);
 		nivel.obtCelda(736 / 32, 128 / 32).setPared(null);
-		Enemigo enemigo6 = new Sirius(928, 352);
+		Enemigo enemigo6 = new Sirius(928, 352, nivel);
 		nivel.obtCelda(928 / 32, 352 / 32).setPared(null);
 
 		mMalos = new EnemigoThread(enemigo, this);
