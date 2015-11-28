@@ -117,7 +117,6 @@ public class Assets {
 		altair_up[1] = altairSheet.crop(1 * width, 3 * height, width, height);
 		altair_up[2] = altairSheet.crop(2 * width, 3 * height, width, height);
 
-		// asdasd
 		sirius_down = new BufferedImage[3];
 		sirius_down[0] = siriusSheet.crop(0 * width, 0 * height, width, height);
 		sirius_down[1] = siriusSheet.crop(1 * width, 0 * height, width, height);
@@ -147,7 +146,7 @@ public class Assets {
 		muroDest = sheet.crop(4 * width, 0, width, height);
 		muroIndes = sheet.crop(1 * width, 1 * height, width, height);
 		bomba = sheet.crop(1 * width, 0 * height, width, height);
-		speedUp = sheet.crop(3 * width, 1 * height, width, height);
+		speedUp = sheet.crop(2 * width, 1 * height, width, height);
 		bombality = sheet.crop(2 * width, 0 * height, width, height);
 		masacrality = sheet.crop(0 * width, 0 * height, width, height);
 		fatality = sheet.crop(0 * width, 1 * height, width, height);

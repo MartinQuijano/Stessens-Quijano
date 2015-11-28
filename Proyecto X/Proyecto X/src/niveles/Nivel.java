@@ -1,9 +1,7 @@
 package niveles;
 
 import java.awt.Graphics;
-import java.util.AbstractQueue;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Random;
 
 import powerups.Bombality;

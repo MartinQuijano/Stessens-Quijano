@@ -35,15 +35,10 @@ public class Sirius extends Enemigo {
 
 	public void mover(int dir) {
 		Celda miCelda = miNivel.obtCelda(posX / 32, posY / 32);
-
 		LinkedList<Celda> lci = new LinkedList<Celda>();
 		LinkedList<Celda> lc = new LinkedList<Celda>();
-
 		lci = miNivel.caminosPosiblesBFS(miCelda, lc);
-	//	miNivel.imprimirCamino(lci);
 		lc = miNivel.caminoFinal(lci);
-	//	miNivel.imprimirCamino(lc);
-		
 		miNivel.desmarcarCeldas();
 		for (Celda c : lc) {
 			miCelda = miNivel.obtCelda(posX / 32, posY / 32);
@@ -56,9 +51,7 @@ public class Sirius extends Enemigo {
 			} else if (miCelda.obtX() < c.obtX()) {
 				moverse(3);
 			}
-			
 		}
-
 	}
 
 	private void moverse(int dir) {
